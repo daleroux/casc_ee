@@ -1,0 +1,25 @@
+---
+ee_list:
+  - name: de-dynatrace
+    tag: 1-0-0-1
+    dependencies:
+      galaxy:
+        collections:
+          - name: ansible.eda
+          - name: dynatrace.event_driven_ansible
+      system:
+        - pkgconf-pkg-config [platform:rpm]
+        - systemd-devel [platform:rpm]
+        - python39-devel [platform:rpm]
+        - gcc [platform:rpm]
+      python:
+        - psutil
+        - six
+    options:
+      package_manager_path: /usr/bin/microdnf
+ee_base_image: "10.8.109.76/de-minimal-rhel8:latest"
+ee_image_push: true
+ee_prune_images: false
+ee_create_ansible_config: false
+ee_pull_collections_from_hub: false
+ee_create_controller_def: true

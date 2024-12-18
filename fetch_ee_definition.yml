@@ -1,0 +1,39 @@
+---
+- name: Playbook to configure execution environments
+  hosts: all
+  gather_facts: true
+
+  tasks:
+
+    - name: Print awx_webhook_payload.key value
+      ansible.builtin.debug:
+        msg: "{{ awx_webhook_payload.key }}"
+
+    - name: Download the definition of the EE using Ansible's uri module
+      ansible.builtin.uri:
+        url: "{{ awx_webhook_payload.key }}"
+        method: GET
+        return_content: true
+        validate_certs: false
+      register: result
+
+    - name: Save the downloaded content to ee-definition.yml
+      ansible.builtin.copy:
+        content: "{{ result.content }}"
+        dest: "/home/ansible/build_dir/ee-definition.yml"
+        mode: '0644'
+        owner: ansible
+        group: ansible
+
+    - name: Run the playbook to build the EE and upload it to Hub
+      ansible.builtin.command: /usr/bin/ansible-playbook -i inventory.ini playbooks/build_ee.yml
+      args:
+        chdir: /home/ansible/build_dir
+      changed_when: true
+      async: 10000
+      poll: 15
+
+    - name: Remove file ee-definition.yml
+      ansible.builtin.file:
+        path: /home/ansible/build_dir/ee-definition.yml
+        state: absent

@@ -1,0 +1,9 @@
+stages:
+  - deploy
+
+deploy1:
+  stage: deploy 
+  script:
+    - /usr/local/bin/casc-ee.sh  https://some_gitlab_url.com/keith-dan/example-ee/-/raw/main/de-dynatrace.yml
+
+
