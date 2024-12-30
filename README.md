@@ -1,11 +1,11 @@
 # Ansible Playbook: Fetch and Configure Execution Environments
 
 ## Overview
-This repository contains an Ansible playbook, a supporting shell script, and a GitLab CI configuration to automate the process of fetching, building, and uploading Execution Environments (EE). The workflow involves downloading EE definitions, triggering builds, and integrating with GitLab pipelines.
-
+This repository includes an Ansible playbook, a supporting shell script, an example decision/execution-environment definition file (de-dynatrace.yml), and a GitLab CI configuration. These components collectively automate the process of fetching, building, and uploading Execution Environments (EEs). The workflow involves downloading EE definitions, initiating builds, and seamlessly integrating with GitLab pipelines.
 ## Components
 1. **Ansible Playbook**: `fetch_ee_definition.yml`
 2. **Shell Script**: `casc-ee.sh`
+3. **DE/EE Definition file (example)**: `de-dynatrace.yml`
 3. **GitLab CI Configuration**: `gitlab-ci.yml`
 
 ---
