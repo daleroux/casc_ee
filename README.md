@@ -68,7 +68,13 @@ Run the script with the EE definition URL as an argument:
 
 ---
 
-## 3. GitLab CI Configuration: `gitlab-ci.yml`
+## 3. DE/EE Definition file (example): `de-dynatrace.yml`
+### Purpose
+Serves as example of a decision/execution environment file. 
+
+---
+
+## 4. GitLab CI Configuration: `gitlab-ci.yml`
 ### Purpose
 Automates the deployment process by invoking the `casc-ee.sh` script during the `deploy` stage.
 
